@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OLE;
 using Microsoft.EntityFrameworkCore;
 
-namespace OLE_2._0
+namespace OLE
 {
     public class Startup
     {

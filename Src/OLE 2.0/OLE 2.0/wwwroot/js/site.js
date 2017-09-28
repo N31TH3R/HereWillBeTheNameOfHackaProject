@@ -52,12 +52,20 @@ function init() {
 
     myMap.geoObjects.add(objectManager);
 
-    $.ajax({
-        // В файле data.json заданы геометрия, опции и данные меток .
-        url: "data.json"
-    }).done(function (data) {
-        //debugger
-        objectManager.add(data);
-    });
+    //$.ajax({
+    //    // В файле data.json заданы геометрия, опции и данные меток .
+    //    url: "data.json"
+    //}).done(function (data) {
+    //    //debugger
+    //    objectManager.add(data);
+    //    });
+
+    $.getJSON(
+        url:"Controllers/HomeController.cs",
+        dataType : "json", 
+        success: function (data, textStatus) {
+            objectManager.add(data);
+        }
+    );
 }
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace OLE_2._0.Models
+namespace OLE.Models
 {
     public class ErrorViewModel
     {
