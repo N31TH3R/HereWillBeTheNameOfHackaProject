@@ -1,6 +1,11 @@
 ﻿@page
 @model indexModel
 @{
+    <environment include="Development">
+        <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    </environment>
     <style>
         #map {
             width: 100%;

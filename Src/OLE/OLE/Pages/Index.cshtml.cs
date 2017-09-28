@@ -19,11 +19,11 @@ namespace OLE.Pages
         
         public void OnGet()
         {
-            var result = new Placemark();
-            result.Description = "sdfsdfsfsdf";
-            _dbContext.Add(result);
-            _dbContext.SaveChanges();
-            var test = _dbContext.Placemark.ToList();
+            //var result = new Placemark();
+            //result.Description = "sdfsdfsfsdf";
+            //_dbContext.Add(result);
+            //_dbContext.SaveChanges();
+            //var test = _dbContext.Placemark.ToList();
         }
     }
 }
