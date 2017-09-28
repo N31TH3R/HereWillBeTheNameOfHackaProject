@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace OLE.Entities
 {
-    public class Placemark
+    public class Event
     {
         [Key]
         public int Id { get; set; }
 
-        public float Latitude { get; set; }
+        public int PlacemarkId { get; set; }
 
-        public float Altitude { get; set; }
-
-        public String Description { get; set; }
-
+        [ForeignKey("PlacemarkId")]
+        public Placemark Placemark { get; set; }
     }
-
 }
