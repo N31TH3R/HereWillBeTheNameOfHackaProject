@@ -24,5 +24,10 @@ namespace OLE_2._0.Controllers
         {
 
         }
+
+        public JsonResult OnGet()
+        {
+            return Json("");
+        }
     }
 }
