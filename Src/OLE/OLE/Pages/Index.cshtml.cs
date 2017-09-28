@@ -25,5 +25,10 @@ namespace OLE.Pages
             //_dbContext.SaveChanges();
             //var test = _dbContext.Placemark.ToList();
         }
+
+        public void OnPostAsync(int xC, int yC)
+        {
+
+        }
     }
 }

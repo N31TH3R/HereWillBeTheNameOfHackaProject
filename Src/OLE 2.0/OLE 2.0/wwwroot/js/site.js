@@ -1,5 +1,5 @@
 ﻿ymaps.ready(init);
-function init () {
+function init() {
     var myMap = new ymaps.Map('map', {
         center: [55.76, 37.64],
         zoom: 10
@@ -12,7 +12,7 @@ function init () {
     MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
         '<div style="color: #FFFFFF; font-weight: bold; font: arial;">$[properties.iconContent]</div>'
     );
-    
+
     //Обработка события, возникающего при щелчке
     //левой кнопкой мыши в любой точке карты.
     //При возникновении такого события откроем балун.
@@ -58,6 +58,6 @@ function init () {
     }).done(function (data) {
         //debugger
         objectManager.add(data);
-        });
+    });
 }
 
