@@ -67,10 +67,12 @@ function init() {
     //        objectManager.add(data);
     //    }
     //);
+    var x;
     $.ajax({
         type: "GET",
         url: "Home/OnGetAsync",
         dataType: "json",
+        data: enabledLayers : x,
         success: function (data) {
             objectManager.add(data);
         }
