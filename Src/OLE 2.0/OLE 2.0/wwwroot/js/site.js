@@ -69,10 +69,10 @@ function init() {
     //);
     var x;
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "Home/OnGetAsync",
         dataType: "json",
-        data: enabledLayers : x,
+        data: { enabledLayers: x },
         success: function (data) {
             objectManager.add(data);
         }

@@ -26,7 +26,10 @@ namespace OLE
 
         public String HintContent { get; set; }
 
-        public String Options { get; set; }
+        public String Category { get; set; }
 
+        public String IconImageHref { get; set; }
+
+        public String IconLayout { get; set; }
     }
 }

@@ -47,12 +47,14 @@ namespace OLE.Controllers
             _context.SaveChanges();
         }
 
+        [HttpPost]
         public JsonResult OnGetAsync(string enabledLayers)
         {
             var layers = enabledLayers.Split(',').ToArray();
-            return Json(_context.Placemark.Distinct().Select(x => new {
+            return Json(_context.Placemark.Where(x => layers.Contains(x.Category.Trim())).Select(x => new {
                 type = x.Type,
                 id = x.Id,
+                category = x.Category,
                 geometry = new {
                     type = x.GeometryType,
                     coordinates = new[] {
@@ -66,7 +68,8 @@ namespace OLE.Controllers
                     hintContent = x.HintContent
                 },
                 options = new {
-                    preset = x.Options
+                    iconImageHref = x.IconImageHref,
+                    iconLayout = x.IconLayout
                 }
             }));
         }
