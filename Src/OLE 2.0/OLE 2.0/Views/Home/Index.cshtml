@@ -90,6 +90,7 @@
             type: "POST",
             url: "Home/SendToAsp",
             dataType: "json",
+            async: false,
             data: { jsn : objectDataString },
             success: function (data) {
                 alert('Success');
@@ -100,7 +101,8 @@
     function sendAndHide() {
         sendToAsp();
         document.getElementById("newPointForm").style.visibility = "hidden";
-        $(this).delay(500).queue(function (next) { draw(); next(); });
+        //$(this).delay(500).queue(function (next) { draw(); next(); });
+        draw();
     }
 
 
