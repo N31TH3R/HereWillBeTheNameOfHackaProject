@@ -47,8 +47,9 @@ namespace OLE.Controllers
             _context.SaveChanges();
         }
 
-        public JsonResult OnGetAsync()
+        public JsonResult OnGetAsync(string enabledLayers)
         {
+            var layers = enabledLayers.Split(',').ToArray();
             return Json(_context.Placemark.Distinct().Select(x => new {
                 type = x.Type,
                 id = x.Id,
