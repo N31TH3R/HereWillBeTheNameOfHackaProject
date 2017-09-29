@@ -1,12 +1,21 @@
 ﻿ymaps.ready(init);
+var myMap;
 function init() {
-    var myMap = new ymaps.Map('map', {
-        center: [55.76, 37.64],
-        zoom: 10
-    }, {
-            searchControlProvider: 'yandex#search'
-        }),
-        objectManager = new ymaps.ObjectManager();
+    if (myMap == null) {
+        myMap = new ymaps.Map('map', {
+            center: [55.76, 37.64],
+            zoom: 10
+        }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            objectManager = new ymaps.ObjectManager({
+                // Чтобы метки начали кластеризоваться, выставляем опцию.
+                clusterize: true,
+                geoObjectOpenBalloonOnClick: false,
+                clusterOpenBalloonOnClick: false
+            });
+    }
+    
 
     // Создаём макет содержимого.
     MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
@@ -17,25 +26,16 @@ function init() {
     //левой кнопкой мыши в любой точке карты.
     //При возникновении такого события откроем балун.
     myMap.events.add('click', function (e) {
-        if (!myMap.balloon.isOpen()) {
-            var coords = e.get('coords');
-            myMap.balloon.open(coords, {
-                contentHeader: 'Событие!',
-                contentBody: '<p>Кто-то щелкнул по карте.</p>' +
-                '<p>Координаты щелчка: ' + [
-                    coords[0].toPrecision(6),
-                    coords[1].toPrecision(6)
-                ].join(', ') + '</p>',
-                contentFooter: '<sup>Щелкните еще раз</sup>'
-            });
-            //myPlacemarkWithContent.coords = coords;
-            //myMap.geoObjects
-            //    .add(myPlacemarkWithContent);
-        }
-        else {
-            myMap.balloon.close();
-        }
+        
+        var coords = e.get('coords');
+            
+        document.getElementById("newPointForm").style.visibility = "visible";
+        document.getElementById("XCoordinate").innerText = coords[0].toPrecision(6);
+        document.getElementById("YCoordinate").innerText = coords[1].toPrecision(6);
+        
     });
+
+    
 
     // Обработка события, возникающего при щелчке
     // правой кнопки мыши в любой точке карты.
@@ -60,13 +60,55 @@ function init() {
     //    objectManager.add(data);
     //    });
 
-    $.getJSON(
-         "Home/OnGet",
-         "json", 
-         function (data, textStatus) {
+    //$.getJSON(
+    //     "Home/OnGetAsync",
+    //     "json", 
+    //     function (data, textStatus) {
+    //        objectManager.add(data);
+    //    }
+    //);
+    $.ajax({
+        type: "GET",
+        url: "Home/OnGetAsync",
+        dataType: "json",
+        success: function (data) {
             objectManager.add(data);
         }
-    );
+    });
+
+    function onObjectEvent(e) {
+        var objectId = e.get('objectId');
+        if (e.get('type') == 'mouseenter') {
+            // Метод setObjectOptions позволяет задавать опции объекта "на лету".
+            objectManager.objects.setObjectOptions(objectId, {
+                preset: 'islands#yellowSportCircleIcon'
+            });
+            document.getElementById("rightPanel").style.visibility = "visible";
+        } else {
+            objectManager.objects.setObjectOptions(objectId, {
+                preset: 'islands#blueSportCircleIcon'
+            });
+            document.getElementById("rightPanel").style.visibility = "hidden";
+        }
+    }
+
+    function onClusterEvent(e) {
+        var objectId = e.get('objectId');
+        if (e.get('type') == 'mouseenter') {
+            objectManager.clusters.setClusterOptions(objectId, {
+                preset: 'islands#yellowClusterIcons'
+            });
+            document.getElementById("rightPanel").style.visibility = "visible";
+        } else {
+            objectManager.clusters.setClusterOptions(objectId, {
+                preset: 'islands#blueClusterIcons'
+            });
+            document.getElementById("rightPanel").style.visibility = "hidden";
+        }
+    }
+
+    objectManager.objects.events.add(['mouseenter', 'mouseleave'], onObjectEvent);
+    objectManager.clusters.events.add(['mouseenter', 'mouseleave'], onClusterEvent);
 }
 
 

@@ -47,9 +47,9 @@ namespace OLE.Controllers
             _context.SaveChanges();
         }
 
-        public JsonResult OnGet()
+        public JsonResult OnGetAsync()
         {
-            return Json(_context.Placemark.Select(x => new {
+            return Json(_context.Placemark.Distinct().Select(x => new {
                 type = x.Type,
                 id = x.Id,
                 geometry = new {

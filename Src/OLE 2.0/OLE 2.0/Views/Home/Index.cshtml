@@ -12,24 +12,53 @@
         height: 700px;
         margin: 0 !important;
         padding: 0;
-        margin: 0;
     }
 
     .body-content {
         width: 100%;
         margin: 0 !important;
     }
+    #newPointForm {
+        width: 20%;
+        
+        padding: 0;
+        position: fixed;
+        z-index: 3;
+        visibility: hidden;
+        float: left;
+        margin: 30% 40%;
+        background-color: aqua;
+    }
+    .newPointFormInput {
+        width: 100%;
+    }
+    .coordinatesBlock{
+        display: none;
+    }
+    .formClass{
+        
+    }
+    #rightPanel {
+        background-color: aqua;
+        float: right;
+        position: relative;
+        height: -webkit-fill-available;
+        width: 20%;
+        padding: 10px;
+        visibility:hidden;
+        z-index: 10;
+    }
 </style>
 <script>
     function sendToAsp()
     {
         var result = {
-            XCoordinate : document.getElementById("XCoordinate").value,
-            YCoordinate : document.getElementById("YCoordinate").value,
-            HintContent : "Текст подсказки",
+            XCoordinate: document.getElementById("XCoordinate").innerText,
+            YCoordinate: document.getElementById("YCoordinate").innerText,
+            HintContent: document.getElementById("Content").value,
             GeometryType : "Point",
             Options : "islands#blueSportCircleIcon",
-            BalloonContent : "Содержимое балуна",
+            BalloonContent: document.getElementById("Content").value,
             ClusterCaption : "Еще одна метка",
             Type : "Feature"
         }
@@ -46,11 +75,18 @@
             }
         });
     }
+    document.getElementById("createPoint").onclick(function () {
+        document.getElementById("newPointForm").style.visibility = "hidden";
+    }
+    );
 </script>
 <div id="map">
-    <form onsubmit="sendToAsp()">
-        <input type="text" id="XCoordinate" />
-        <input type="text" id="YCoordinate" />
-        <input type="submit" value="Send" />
+    <form onsubmit="sendToAsp()" id="newPointForm">
+        <div id="XCoordinate" class="coordinatesBlock"></div>
+        <div id="YCoordinate" class="coordinatesBlock"></div>
+        <input type="text" id="Content"  class="newPointFormInput formClass"/>
+        <input type="submit" value="Send" id="createPoint" class="formClass"/>
     </form>
+    <div id="rightPanel">
+    </div>
 </div>
