@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OLE.Models;
-using OLE;
+using System;
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace OLE.Controllers
@@ -18,7 +16,17 @@ namespace OLE.Controllers
         public HomeController(OLEDbContext context) 
         {
             _context = context;
-            var tttt = _context.Placemark.ToList();
+            //var pm = new Placemark();
+            //pm.HintContent = "Текст подсказки";
+            //pm.GeometryType = "Point";
+            //pm.Options = "islands#blueSportCircleIcon";
+            //pm.BalloonContent = "Содержимое балуна";
+            //pm.ClusterCaption = "Еще одна метка";
+            //pm.Type = "Feature";
+            //pm.XCoordinate = 55.763338f;
+            //pm.YCoordinate = 37.565466f;
+            //_context.Add(pm);
+            //_context.SaveChanges();
         }
 
         public IActionResult Index()
@@ -31,14 +39,35 @@ namespace OLE.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public void OnPostAsync()
+        [HttpPost]
+        public void SendToAsp(String jsn)
         {
-
+            var pm = JsonConvert.DeserializeObject<Placemark>(jsn);
+            _context.Add(pm);
+            _context.SaveChanges();
         }
 
         public JsonResult OnGet()
         {
-            return Json(_context.Placemark.ToList<Placemark>());
+            return Json(_context.Placemark.Select(x => new {
+                type = x.Type,
+                id = x.Id,
+                geometry = new {
+                    type = x.GeometryType,
+                    coordinates = new[] {
+                        x.XCoordinate,
+                        x.YCoordinate
+                    }
+                },
+                properties = new {
+                    balloonContent = x.BalloonContent,
+                    clusterCaption = x.ClusterCaption,
+                    hintContent = x.HintContent
+                },
+                options = new {
+                    preset = x.Options
+                }
+            }));
         }
     }
 }

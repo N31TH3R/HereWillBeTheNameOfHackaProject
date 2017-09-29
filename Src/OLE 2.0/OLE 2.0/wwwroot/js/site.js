@@ -28,9 +28,9 @@ function init() {
                 ].join(', ') + '</p>',
                 contentFooter: '<sup>Щелкните еще раз</sup>'
             });
-            myPlacemarkWithContent.coords = coords;
-            myMap.geoObjects
-                .add(myPlacemarkWithContent);
+            //myPlacemarkWithContent.coords = coords;
+            //myMap.geoObjects
+            //    .add(myPlacemarkWithContent);
         }
         else {
             myMap.balloon.close();
@@ -61,11 +61,12 @@ function init() {
     //    });
 
     $.getJSON(
-        url:"Controllers/HomeController.cs",
-        dataType : "json", 
-        success: function (data, textStatus) {
+         "Home/OnGet",
+         "json", 
+         function (data, textStatus) {
             objectManager.add(data);
         }
     );
 }
+
 

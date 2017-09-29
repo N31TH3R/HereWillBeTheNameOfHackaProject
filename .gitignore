@@ -287,3 +287,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /Src/OLE/OLE/Migrations
+/Src/OLE 2.0/OLE 2.0/Migrations

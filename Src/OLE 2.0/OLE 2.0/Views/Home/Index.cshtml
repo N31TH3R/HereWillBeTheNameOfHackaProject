@@ -20,11 +20,37 @@
         margin: 0 !important;
     }
 </style>
+<script>
+    function sendToAsp()
+    {
+        var result = {
+            XCoordinate : document.getElementById("XCoordinate").value,
+            YCoordinate : document.getElementById("YCoordinate").value,
+            HintContent : "Текст подсказки",
+            GeometryType : "Point",
+            Options : "islands#blueSportCircleIcon",
+            BalloonContent : "Содержимое балуна",
+            ClusterCaption : "Еще одна метка",
+            Type : "Feature"
+        }
 
+        var objectDataString = JSON.stringify(result);
+
+        $.ajax({
+            type: "POST",
+            url: "Home/SendToAsp",
+            dataType: "json",
+            data: { jsn : objectDataString },
+            success: function (data) {
+                alert('Success');
+            }
+        });
+    }
+</script>
 <div id="map">
-    <form method="post">
-        <input type="number" name="xC" />
-        <input type="number" name="yC" />
+    <form onsubmit="sendToAsp()">
+        <input type="text" id="XCoordinate" />
+        <input type="text" id="YCoordinate" />
         <input type="submit" value="Send" />
     </form>
 </div>

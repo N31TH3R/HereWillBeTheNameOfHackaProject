@@ -10,10 +10,10 @@ namespace OLE
 {
     public OLEDbContext(DbContextOptions<OLEDbContext> options) : base(options)
     {
+
     }
 
     public DbSet<Placemark> Placemark { get; set; }
-    public DbSet<Event> Event { get; set; }
 
-}
+    }
 }
