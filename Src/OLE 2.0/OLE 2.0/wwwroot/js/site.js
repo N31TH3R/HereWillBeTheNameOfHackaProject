@@ -84,11 +84,13 @@ function init() {
                 preset: 'islands#yellowSportCircleIcon'
             });
             document.getElementById("rightPanel").style.visibility = "visible";
+            //document.getElementById("hintRightPanel").innerText = objectManager.objects.getById(objectId).properties.hint;
         } else {
             objectManager.objects.setObjectOptions(objectId, {
                 preset: 'islands#blueSportCircleIcon'
             });
             document.getElementById("rightPanel").style.visibility = "hidden";
+            //document.getElementById("hintRightPanel").innerText = "";
         }
     }
 
