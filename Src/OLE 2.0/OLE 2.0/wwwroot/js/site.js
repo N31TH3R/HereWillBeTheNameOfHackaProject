@@ -98,20 +98,15 @@ function init() {
             objectManager.add(data);
         }
     });
-
+   
     function onObjectEvent(e) {
         var objectId = e.get('objectId');
         if (e.get('type') == 'mouseenter') {
-            // Метод setObjectOptions позволяет задавать опции объекта "на лету".
-            objectManager.objects.setObjectOptions(objectId, {
-                preset: 'islands#yellowCircleIcon'
-            });
+            
             document.getElementById("rightPanel").style.visibility = "visible";
             //document.getElementById("hintRightPanel").innerText = objectManager.objects.getById(objectId).properties.hint;
         } else {
-            objectManager.objects.setObjectOptions(objectId, {
-                preset: 'islands#blueCircleIcon'
-            });
+            
             document.getElementById("rightPanel").style.visibility = "hidden";
             //document.getElementById("hintRightPanel").innerText = "";
         }
