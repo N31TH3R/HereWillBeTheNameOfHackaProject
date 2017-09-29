@@ -28,8 +28,9 @@ namespace OLE
 
         public String Category { get; set; }
 
-        public String IconImageHref { get; set; }
+        public String Preset { get; set; }
 
-        public String IconLayout { get; set; }
+        public String IconColor { get; set; }
+
     }
 }

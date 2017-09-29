@@ -1,6 +1,8 @@
 ﻿ymaps.ready(init);
 var myMap;
+var layers = "Спорт";
 function init() {
+    
     if (myMap == null) {
         myMap = new ymaps.Map('map', {
             center: [55.76, 37.64],
@@ -67,12 +69,12 @@ function init() {
     //        objectManager.add(data);
     //    }
     //);
-    var x;
+    
     $.ajax({
         type: "POST",
         url: "Home/OnGetAsync",
         dataType: "json",
-        data: { enabledLayers: x },
+        data: { enabledLayers: layers },
         success: function (data) {
             objectManager.add(data);
         }
@@ -83,13 +85,13 @@ function init() {
         if (e.get('type') == 'mouseenter') {
             // Метод setObjectOptions позволяет задавать опции объекта "на лету".
             objectManager.objects.setObjectOptions(objectId, {
-                preset: 'islands#yellowSportCircleIcon'
+                preset: 'islands#yellowCircleIcon'
             });
             document.getElementById("rightPanel").style.visibility = "visible";
             //document.getElementById("hintRightPanel").innerText = objectManager.objects.getById(objectId).properties.hint;
         } else {
             objectManager.objects.setObjectOptions(objectId, {
-                preset: 'islands#blueSportCircleIcon'
+                preset: 'islands#blueCircleIcon'
             });
             document.getElementById("rightPanel").style.visibility = "hidden";
             //document.getElementById("hintRightPanel").innerText = "";
