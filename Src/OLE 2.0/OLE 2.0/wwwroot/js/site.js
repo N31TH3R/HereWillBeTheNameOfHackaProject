@@ -1,9 +1,9 @@
 ﻿ymaps.ready(init);
 var myMap;
-var layers = "Спорт";
+var layers = "Спорт,Вечер,Игры,Мероприятия";
 var objectManagerVar = null;
 function draw() {
-    
+    objectManagerVar.removeAll();
     getData();
     
     myMap.geoObjects.add(objectManagerVar);

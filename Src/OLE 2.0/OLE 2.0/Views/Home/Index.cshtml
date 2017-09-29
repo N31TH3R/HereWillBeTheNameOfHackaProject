@@ -68,6 +68,15 @@
         z-index: 10;
         border-radius: 10px;
     }
+    .btnLayer {
+        width: auto;
+        height: auto;
+    }
+
+    .btnImg {
+        width: 35px!important;
+        height: 35px!important;
+    }
 </style>
 <script>
     function sendToAsp()
@@ -81,7 +90,7 @@
             BalloonContent: document.getElementById("Content").value,
             ClusterCaption : "Еще одна метка",
             Type: "Feature",
-            Category: "Спорт"
+            Category: document.getElementById("typeEvent").options[document.getElementById("typeEvent").selectedIndex].innerText
         }
 
         var objectDataString = JSON.stringify(result);
@@ -105,7 +114,19 @@
         draw();
     }
 
-
+    function layersCheck(layer) {
+        var arr = layers.split(',');
+        if (arr.indexOf(layer) == -1) {
+            debugger
+            layers = layers + "," + layer;
+        } else {
+            debugger
+            delete arr[arr.indexOf(layer)];
+            layers = arr.join(',');
+        }
+        
+        draw();
+    }
 </script>
 <div id="map">
         
@@ -127,28 +148,17 @@
     <div id="leftPanel">
         <div id="hintLeftPanel"></div>
         <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
+            <button  class="btnLayer" onclick="layersCheck('Спорт')"><img src="~/images/basketball.png" alt="Спорт" class="btnImg">Спорт</button>
         </p>
         <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
+            <button class="btnLayer" onclick="layersCheck('Игры')"><img src="~/images/basketball.png" alt="Игры" class="btnImg">Игры</button>
         </p>
         <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
+            <button class="btnLayer" onclick="layersCheck('Мероприятия')"><img src="~/images/basketball.png" alt="Мероприятия" class="btnImg">Мероприятия</button>
         </p>
         <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
+            <button class="btnLayer" onclick="layersCheck('Вечер')"><img src="~/images/basketball.png" alt="Вечер" class="btnImg">Вечер</button>
         </p>
-        <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
-        </p>
-        <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
-        </p>
-        <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
-        </p>
-        <p id="food" class="figIco">
-            <img class="ImagIco" src="~/images/basketball.png" width="100" height="100" alt="">Спорт
-        </p>
+        
     </div>
 </div>
