@@ -68,8 +68,7 @@ namespace OLE.Controllers
                     hintContent = x.HintContent
                 },
                 options = new {
-                    preset = x.Preset,
-                    iconColor = x.IconColor
+                    preset = x.Preset
                 }
             }));
         }

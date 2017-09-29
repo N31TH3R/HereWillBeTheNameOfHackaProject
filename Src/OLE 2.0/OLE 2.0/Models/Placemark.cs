@@ -30,7 +30,5 @@ namespace OLE
 
         public String Preset { get; set; }
 
-        public String IconColor { get; set; }
-
     }
 }
