@@ -38,6 +38,13 @@
     .formClass{
         
     }
+    .figIco {
+        text-align: center;
+    }
+    .ImagIco {
+        width: 35px;
+        height: auto;
+    }
     #rightPanel {
         background-color: aqua;
         float: right;
@@ -45,7 +52,20 @@
         height: -webkit-fill-available;
         width: 20%;
         padding: 10px;
-        visibility:hidden;
+        visibility: hidden;
+        z-index: 10;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-radius: 10px;
+    }
+    #leftPanel {
+        background-color: aqua;
+        float: left;
+        position: relative;
+        height: -webkit-fill-available;
+        width: 5%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        padding: 10px;
+        visibility: hidden;
         z-index: 10;
         border-radius: 10px;
     }
@@ -90,5 +110,32 @@
     </form>
     <div id="rightPanel">
         <div id="hintRightPanel"></div>
+    </div>
+    <div id="leftPanel">
+        <div id="hintLeftPanel"></div>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
+        <p id="food" class="figIco">
+            <img class="ImagIco" src="C:\Users\vivom\Downloads\f.jpg" width="100" height="100" alt="Иллюстрация">
+        </p>
     </div>
 </div>
