@@ -1,8 +1,32 @@
 ﻿ymaps.ready(init);
 var myMap;
 var layers = "Спорт";
-function init() {
+var objectManagerVar = null;
+function draw() {
     
+    getData();
+    
+    myMap.geoObjects.add(objectManagerVar);
+}
+
+function getData() {
+    $.ajax({
+        type: "POST",
+        url: "Home/OnGetAsync",
+        dataType: "json",
+        data: { enabledLayers: layers },
+        success: function (data) {
+            objectManagerVar.add(data);
+        }
+    });
+}
+function init() {
+    objectManagerVar = new ymaps.ObjectManager({
+        // Чтобы метки начали кластеризоваться, выставляем опцию.
+        clusterize: true,
+        geoObjectOpenBalloonOnClick: false,
+        clusterOpenBalloonOnClick: false
+    });
     if (myMap == null) {
         myMap = new ymaps.Map('map', {
             center: [55.76, 37.64],
@@ -10,12 +34,7 @@ function init() {
         }, {
                 searchControlProvider: 'yandex#search'
             }),
-            objectManager = new ymaps.ObjectManager({
-                // Чтобы метки начали кластеризоваться, выставляем опцию.
-                clusterize: true,
-                geoObjectOpenBalloonOnClick: false,
-                clusterOpenBalloonOnClick: false
-            });
+            objectManager = objectManagerVar;
     }
     
 
@@ -39,18 +58,18 @@ function init() {
 
     
 
-    // Обработка события, возникающего при щелчке
-    // правой кнопки мыши в любой точке карты.
-    // При возникновении такого события покажем всплывающую подсказку
-    // в точке щелчка.
-    myMap.events.add('contextmenu', function (e) {
-        myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
-    });
+    //// Обработка события, возникающего при щелчке
+    //// правой кнопки мыши в любой точке карты.
+    //// При возникновении такого события покажем всплывающую подсказку
+    //// в точке щелчка.
+    //myMap.events.add('contextmenu', function (e) {
+    //    myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
+    //});
 
-    // Скрываем хинт при открытии балуна.
-    myMap.events.add('balloonopen', function (e) {
-        myMap.hint.close();
-    });
+    //// Скрываем хинт при открытии балуна.
+    //myMap.events.add('balloonopen', function (e) {
+    //    myMap.hint.close();
+    //});
 
     myMap.geoObjects.add(objectManager);
 

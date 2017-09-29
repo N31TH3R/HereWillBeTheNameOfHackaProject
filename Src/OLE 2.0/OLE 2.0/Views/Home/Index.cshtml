@@ -100,6 +100,7 @@
     function sendAndHide() {
         sendToAsp();
         document.getElementById("newPointForm").style.visibility = "hidden";
+        $(this).delay(500).queue(function (next) { draw(); next(); });
     }
 
 
