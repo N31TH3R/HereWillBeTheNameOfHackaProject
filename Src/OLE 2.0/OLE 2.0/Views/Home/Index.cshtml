@@ -58,24 +58,25 @@
         border-radius: 10px;
     }
     #leftPanel {
-        background-color: aqua;
         float: left;
         position: relative;
         height: -webkit-fill-available;
-        width: 5%;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        padding: 10px;
+        width: auto;
+        padding: 7% 60px;
         z-index: 10;
         border-radius: 10px;
     }
     .btnLayer {
-        width: auto;
-        height: auto;
+        width: 100% !important;
+        height: auto !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .btnImg {
-        width: 35px!important;
-        height: 35px!important;
+    #createPoint{
+        width: 100%;
+    }
+    #typeEvent {
+        width: 100%;
     }
 </style>
 <script>
@@ -117,10 +118,10 @@
     function layersCheck(layer) {
         var arr = layers.split(',');
         if (arr.indexOf(layer) == -1) {
-            debugger
+            
             layers = layers + "," + layer;
         } else {
-            debugger
+            
             delete arr[arr.indexOf(layer)];
             layers = arr.join(',');
         }
@@ -133,31 +134,31 @@
     <div id="newPointForm">
         <div id="XCoordinate" class="coordinatesBlock"></div>
         <div id="YCoordinate" class="coordinatesBlock"></div>
-        <input type="text" id="Content" class="newPointFormInput formClass" />
+        <input type="text" id="Content" class="newPointFormInput formClass form-control" />
         <select id="typeEvent">
             <option value="islands#blueRunCircleIcon">Спорт</option>
             <option value="islands#yellowEntertainmentCenterCircleIcon">Игры</option>
             <option value="islands#greenCircusCircleIcon">Мероприятия</option>
             <option value="islands#redBarCircleIcon">Вечер</option>
         </select>
-        <input type="button" onclick="sendAndHide()" value="Send" id="createPoint" class="formClass" />
+        <input type="button" onclick="sendAndHide()" value="Send" id="createPoint" class="formClass btn btn-sm btn-primary" />
     </div>
-    <div id="rightPanel">
+    <div id="rightPanel sidebar">
         <div id="hintRightPanel"></div>
     </div>
     <div id="leftPanel">
         <div id="hintLeftPanel"></div>
         <p id="food" class="figIco">
-            <button  class="btnLayer" onclick="layersCheck('Спорт')"><img src="~/images/basketball.png" alt="Спорт" class="btnImg">Спорт</button>
+            <button  class="btnLayer btn btn-lg btn-info" onclick="layersCheck('Спорт')">Спорт</button>
         </p>
         <p id="food" class="figIco">
-            <button class="btnLayer" onclick="layersCheck('Игры')"><img src="~/images/basketball.png" alt="Игры" class="btnImg">Игры</button>
+            <button class="btnLayer btn btn-lg btn-warning" onclick="layersCheck('Игры')">Игры</button>
         </p>
         <p id="food" class="figIco">
-            <button class="btnLayer" onclick="layersCheck('Мероприятия')"><img src="~/images/basketball.png" alt="Мероприятия" class="btnImg">Мероприятия</button>
+            <button class="btnLayer btn btn-lg btn-success" onclick="layersCheck('Мероприятия')">Мероприятия</button>
         </p>
         <p id="food" class="figIco">
-            <button class="btnLayer" onclick="layersCheck('Вечер')"><img src="~/images/basketball.png" alt="Вечер" class="btnImg">Вечер</button>
+            <button class="btnLayer btn btn-lg btn-danger" onclick="layersCheck('Вечер')">Вечер</button>
         </p>
         
     </div>
